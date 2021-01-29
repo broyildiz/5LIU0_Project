@@ -241,10 +241,10 @@ public void quarter_1()
     s.period = 1 / s.sin_freq;
     text("Period" + extra + str(s.period), 0 + q1.x_offset, (fontSize * (elements++))+q1.y_offset);
     
-    cp5.addButton("Button")
-      .setValue(1)
-      .setPosition(0, (fontSize * (elements++))+q1.y_offset)
-      .setSize(200,19);
+    //cp5.addButton("Button")
+    //  .setValue(1)
+    //  .setPosition(0, (fontSize * (elements++))+q1.y_offset)
+    //  .setSize(200,19);
 }
 
 public void Button(float theValue) {
@@ -339,7 +339,7 @@ public void writeSettingsFile()
   settingsFile.print(PApplet.parseInt(s.D));
 }  
 
-public int remap(int i)
+public float remap(int i)
 {
   float input_start = 0.0f;
   float input_end = 512;
@@ -531,14 +531,11 @@ public void draw()
       settingsFile = createWriter("settings.txt");
       
       quarter_1();
-
       quarter_2();
       
       RunFile(0);
-      //launch(sketchPath("")+"myfile.bat");
       quarter_3();
       RunFile(1);
-      //launch(sketchPath("")+"myfile2.bat");
       quarter_4();
       
       xOutput.flush(); // Write the remaining data

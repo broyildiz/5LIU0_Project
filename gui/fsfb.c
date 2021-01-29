@@ -37,19 +37,20 @@ int main()
 	error = 0;
 
 	u = input;
+//	u = 1;
 	y = 0;
 	
 	fp = fopen("ctrl_out.txt", "w+");
 	
 //	fprintf(fp, "t\terror\tt\ty\tt\tx1\tt\tx2\tt\tx3\n");
 	
-	for(t = 0; t < 10.0; t += dt)
+	for(t = 0; t < 0.1; t += dt)
 	{
 //		error = u - k3 - k2 - k1;
 //		error = u - k3 - k2;
 //		error = u - k3;
 		error = (u * 91.5881) - y;
-				
+//		error = (u) - y;		
 
 		dx1 = (x2) * dt;
 		dx2 = (x3) * dt;

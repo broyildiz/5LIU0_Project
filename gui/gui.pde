@@ -222,10 +222,10 @@ void quarter_1()
     s.period = 1 / s.sin_freq;
     text("Period" + extra + str(s.period), 0 + q1.x_offset, (fontSize * (elements++))+q1.y_offset);
     
-    cp5.addButton("Button")
-      .setValue(1)
-      .setPosition(0, (fontSize * (elements++))+q1.y_offset)
-      .setSize(200,19);
+    //cp5.addButton("Button")
+    //  .setValue(1)
+    //  .setPosition(0, (fontSize * (elements++))+q1.y_offset)
+    //  .setSize(200,19);
 }
 
 void Button(float theValue) {
@@ -320,7 +320,7 @@ void writeSettingsFile()
   settingsFile.print(int(s.D));
 }  
 
-int remap(int i)
+float remap(int i)
 {
   float input_start = 0.0;
   float input_end = 512;
