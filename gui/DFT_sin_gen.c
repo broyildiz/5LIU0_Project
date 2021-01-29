@@ -77,11 +77,11 @@ void sin_gen()
 		i++;
 	}
 	
-	printf("Amp = %d\n", amp);
-	printf("Fsample = %d\n", Fsample);
-	printf("Fsignal = %d\n", Fsignal);
-	printf("Phase = %d\n", phase);
-	printf("DC = %d\n", dc);
+//	printf("Amp = %d\n", amp);
+//	printf("Fsample = %d\n", Fsample);
+//	printf("Fsignal = %d\n", Fsignal);
+//	printf("Phase = %d\n", phase);
+//	printf("DC = %d\n", dc);
 	
 	fclose(fp);
 	
@@ -89,12 +89,11 @@ void sin_gen()
 	
 	fp = fopen("sine.txt", "w+");
 	
+	// Generate sine values
 	float j;
 	for(j = 0, i = 0; j < N; j++, i++)
 	{
-//		printf("i = %d\tj = %f\n", i, j);
 		input[i] = sin(TWO_PI * Fsignal * (j/Fsample));
-//		printf("%f\n", sin(TWO_PI * Fsignal * (j/Fsample)));
 		fprintf(fp, "%f\n", input[i]);
 	}
 	
@@ -108,13 +107,6 @@ void DFT()
 	fp = fopen("dft_out.txt", "w+");
 	int k, i = 0;
 	
-//	for(i = 0; i < N_half; i++)
-//	{
-//		ReX[i] = 0;
-//		ImX[i] = 0;
-//	}
-//	memset(ReX, 0, sizeof(ReX));
-//	memset(ImX, 0, sizeof(ReX));
 	for(i = 0; i < N/2; i++)
 	{
 		ReX[i] = 0;
@@ -129,30 +121,30 @@ void DFT()
 		{
 			ReX[k] = ReX[k] + input[i]*cos(2*PI*k*i/N);
 			ImX[k] = ImX[k] - input[i]*sin(2*PI*k*i/N);
-//			printf("k = %d\ti = %d\n", k, i);
 		}
 	}
 	printf("i = %d\n\n", --i);
 	printf("i = %d\n\n", --k);
 	
-//	fprintf(fp, "N\tRe\tIm\n", i, ReX[i], ImX[i]);
-	fprintf(fp, "Re\tIm\n", i, ReX[i], ImX[i]);
+//	fprintf(fp, "N\tRe\tIm\n", i, ReX[i], ImX[i]); // Debug
+	fprintf(fp, "Re\tIm\n");
 	for(i = 0; i < N/2+1; i++)
 	{
-//		fprintf(fp, "%d\t%f\t%f\n", i, ReX[i], ImX[i]);
+//		fprintf(fp, "%d\t%f\t%f\n", i, ReX[i], ImX[i]); // Debug
 		fprintf(fp, "%f\t%f\n", ReX[i], ImX[i]);
 	}
 	
 	fclose(fp);		
 	
-//	fp = fopen("sqrt.txt", "w+");
+//	fp = fopen("sqrt.txt", "w+"); // Debug
 	fp = fopen("FSB_IN.txt", "w+");	
 	float big_freq = 0.0;
 	int loc = 0;
 	float abs = 0.0;
 	
-//	fprintf(fp, "i\tabs\tbig_freq\tloca\n");
+//	fprintf(fp, "i\tabs\tbig_freq\tloca\n"); // Debug
 	
+	// Find the maximal frequency
 	for(i = 0; i < N/2; i++)
 	{
 		abs = sqrt(ReX[i]*ReX[i] + ImX[i]*ImX[i]);
@@ -163,18 +155,14 @@ void DFT()
 			loc = remap(i);
 					
 		}
-//		fprintf(fp, "%d\t%f\t%f\t%d\n", i, abs, big_freq, loc);
+//		fprintf(fp, "%d\t%f\t%f\t%d\n", i, abs, big_freq, loc); // Debug
 	}
 	printf("big freq = %d\n", loc);
 	fprintf(fp, "%d\n", loc);
-	fclose(fp);
-	
-
-	
-	
-	
+	fclose(fp);	
 }	
 
+// Source: https://stackoverflow.com/questions/5731863/mapping-a-numeric-range-onto-another
 int remap(int i)
 {
   float input_start = 0.0;
@@ -189,7 +177,6 @@ int remap(int i)
   output = (int)(output_start + slope * (i -input_start));
   
   return output;
-  
 }
 	
 int main()

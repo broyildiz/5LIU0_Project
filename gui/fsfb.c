@@ -42,9 +42,8 @@ int main()
 	
 	fp = fopen("ctrl_out.txt", "w+");
 	
-//	fprintf(fp, "t\terror\tt\ty\tt\tx1\tt\tx2\tt\tx3\n");
 	
-	for(t = 0; t < 0.1; t += dt)
+	for(t = 0; t < 1; t += dt)
 	{
 //		error = u - k3 - k2 - k1;
 //		error = u - k3 - k2;
@@ -54,12 +53,10 @@ int main()
 
 		dx1 = (x2) * dt;
 		dx2 = (x3) * dt;
-//		dx3 = ( -285.7*x3 -17070*x2 + 0*x1 + 698800*error ) * dt;
-//		dx3 = ( -285.714285714286*x3 -17073.1707317073*x2 -24390.243902439*x1 + 698780.487804878*error ) * dt;
-		dx3 = ( -1200*x3 -479999.999988538*x2 -63999999.9954152*x1 + 698780.487804879*error ) * dt;
+//		dx3 = ( -285.714285714286*x3 -17073.1707317073*x2 -24390.243902439*x1 + 698780.487804878*error ) * dt; // Normal plant
+		dx3 = ( -1200*x3 -479999.999988538*x2 -63999999.9954152*x1 + 698780.487804879*error ) * dt; // FSFB Plant
 			
 		y = x1;
-//		y = (x1/57.3)*2.0;
 		
 		t  += dt;
 	    x1 += dx1;
@@ -71,7 +68,7 @@ int main()
 //	    k1 = (x3 * 2);	
 	    fprintf(fp, "%f\t%f\n",t, x1);
 
-//	    fprintf(fp, "%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\n", t, error,t, y, t, x1, t, x2, t, x3);
+//	    fprintf(fp, "%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\n", t, error,t, y, t, x1, t, x2, t, x3); // Debug
 		
 	}
 

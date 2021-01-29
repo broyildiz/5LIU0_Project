@@ -50,7 +50,7 @@ String formFc = "Fc";
 String empty =  "a";
 String extra =  " = ";
 String formN = "Nsamples"; // Number of samples
-String[] forms = {formA, formB, formC, formD,formFc, formFsample, formN,empty}; // Werkt alleen zolang het langste element het laatste is
+String[] forms = {formA, formB, formC, formD,formFc, formFsample, formN,empty}; // Only works if the last element is the biggest
 int num_forms = forms.length;
 
 int update = 0;
@@ -228,16 +228,14 @@ void quarter_1()
     //  .setSize(200,19);
 }
 
-void Button(float theValue) {
-  println("updating");
-  RunFile(1);
-  quarter_4();
-}
+//void Button(float theValue) {
+//  println("updating");
+//  RunFile(1);
+//  quarter_4();
+//}
 
 void quarter_2()
 {
-  
-  
   int nPoints = s.Nsamples;
   
   float[] x_values = new float[s.Nsamples];
@@ -267,10 +265,6 @@ void quarter_2()
   
   // Create a new plot and set its position on the screen
   plot.setPos(l/2+1, 0);
-  
-  // or all in one go
-  // GPlot plot = new GPlot(this, 25, 25);
-
   plot.setOuterDim(new float[] {600, 300});
 
   // Set the plot title and the axis labels
@@ -279,15 +273,6 @@ void quarter_2()
   plot.getYAxis().setAxisLabelText("Aplitude");
   //plot.setLineColor(color(200, 200, 255));
   
-  //// Add the points
-  //plot.setPoints(points1a);
-  //plot.setPointColor(color(0, 0, 255, 255));
-  
-  //plot.addLayer("layer 1", points1b);
-  //plot.getLayer("layer 1");//.setLineColor(color(255, 255, 255));
-  //plot.setPointColor(color(0, 0, 0, 255));
-  
-    // Add the points
   plot.setPoints(points1b);
   plot.setPointColor(color(0, 0, 0, 255));
   
@@ -300,15 +285,12 @@ void quarter_2()
   
   for(int x = 0; x < 512; x++)
   {
-    
     xOutput.println(x);
     yOutput.println(( s.A * sin(TWO_PI*F*((x/s.Fsample) + s.C)) ) + s.D );
   } 
   
    writeSettingsFile();
-  
-  
-  
+
 }
 
 void writeSettingsFile()
@@ -334,7 +316,6 @@ float remap(int i)
   output = int(output_start + slope * (i -input_start));
   
   return output;
-  
 }
 
 
@@ -373,7 +354,6 @@ void quarter_3()
   plot.getYAxis().setAxisLabelText("Magnitude");
   plot.setLineColor(color(200, 200, 255));
   
-
     // Add the points
   plot.setPoints(abs);
   plot.setPointColor(color(0, 0, 0, 255));
@@ -381,7 +361,6 @@ void quarter_3()
   // Draw it!
   plot.defaultDraw();  
   println("3 present");
-
 }
 
 void quarter_4()
@@ -412,12 +391,11 @@ void quarter_4()
   plot.setOuterDim(new float[] {600, 300});
 
   // Set the plot title and the axis labels
-  plot.setTitleText("The Pos");
+  plot.setTitleText("The Control System");
   plot.getXAxis().setAxisLabelText("t");
   plot.getYAxis().setAxisLabelText("Pos");
   plot.setLineColor(color(200, 200, 255));
   
-
     // Add the points
   plot.setPoints(pos);
   plot.setPointColor(color(0, 0, 0, 255));
@@ -495,7 +473,6 @@ void RunFile(int i)
   
 }
 
-  
 void draw()
 {
   if(update == 1)
@@ -588,36 +565,3 @@ void controlEvent(ControlEvent theEvent) {
   }
   //update = 1;
 }
- 
-int inputCheck(String form)
-{
-  int error = 0;
-  
-  if(form == formA)
-  {
-    // No upper or lower bound
-    //if(s.A > 100 || s.A < 0.0)
-      error = 0;
-  }
-
-  if(form == formB)
-  {
-    if(s.B > 100 || s.A < 0.0)
-      error = 1;
-  }
-  
-  if(form == formA)
-  {
-    if(s.A > 100 || s.A < 0.0)
-      error = 1;
-  }  
-  if(form == formA)
-  {
-    if(s.A > 100 || s.A < 0.0)
-      error = 1;
-  }
-  
-  
-  return error;
-}
-  
