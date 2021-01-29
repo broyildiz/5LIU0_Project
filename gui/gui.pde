@@ -512,14 +512,11 @@ void draw()
       settingsFile = createWriter("settings.txt");
       
       quarter_1();
-
       quarter_2();
       
       RunFile(0);
-      //launch(sketchPath("")+"myfile.bat");
       quarter_3();
       RunFile(1);
-      //launch(sketchPath("")+"myfile2.bat");
       quarter_4();
       
       xOutput.flush(); // Write the remaining data
