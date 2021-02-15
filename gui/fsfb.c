@@ -7,7 +7,7 @@ int main()
 	FILE *fp;
 	
 	fp = fopen("FSB_IN.txt", "r");
-	fgets(line, sizeof(line), fp);
+	fgets(line, sizeof(line), fp); // Read the input value
 	fclose(fp);
 	
 	int input = atoi(line);
@@ -19,9 +19,9 @@ int main()
 	// variabelen
 	float t;               		// tijd
 	float u;               		// input
-	float x1, x2, x3, x4;       // states
+	float x1, x2, x3;       // states
 	float y;               		// output 
-	float dx1,dx2, dx3, dx4;    // verandering van de state per tijdstap
+	float dx1,dx2, dx3;    // verandering van de state per tijdstap
 	
 	float error;
 	
@@ -35,13 +35,10 @@ int main()
 	x3 = 0;
 	
 	error = 0;
-
 	u = input;
-//	u = 1;
 	y = 0;
 	
 	fp = fopen("ctrl_out.txt", "w+");
-	
 	
 	for(t = 0; t < 1; t += dt)
 	{
@@ -63,9 +60,6 @@ int main()
 	    x2 += dx2;
 	    x3 += dx3;
 
-//	    k3 = (x1 / 57.3) * 2.0;
-//	    k2 = (x2/57.3)*2;
-//	    k1 = (x3 * 2);	
 	    fprintf(fp, "%f\t%f\n",t, x1);
 
 //	    fprintf(fp, "%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\t%f\n", t, error,t, y, t, x1, t, x2, t, x3); // Debug

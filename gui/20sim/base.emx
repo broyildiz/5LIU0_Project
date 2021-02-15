@@ -8,14 +8,14 @@
 <IsMainModel>0</IsMainModel>
   <KeepParameterValues>False</KeepParameterValues>
     <LibraryPath>C:\Users\&Ouml;mer\Desktop\5LIU0\Project\GIT\5LIU0_Project\gui\20sim\base.emx</LibraryPath>
-  <TimeStamp>2021-1-29 14:01:28</TimeStamp>
+  <TimeStamp>2021-1-29 23:55:29</TimeStamp>
 </Description>
 </Information>';
  type Mainmodel
  end;
  implementation bg
   submodels
-   Attenuate 528 208
+   Attenuate 496 208
     description '<Description>
  <Version>4.0</Version>
  <IsMainModel>1</IsMainModel>
@@ -30,10 +30,10 @@
     end;
     icon bg bottom
      figures
-      rectangle 512 192 544 224 color 0 fill 15132390;
-      text 'K' 535.5 214.4 color 16711680 16 bold;
-      text '1' 521.6 202.7 color 16711680 16 bold;
-      line 521.6 218.7 535.5 199.5 color 16711680 width 2;
+      rectangle 480 192 512 224 color 0 fill 15132390;
+      text 'K' 503.5 214.4 color 16711680 16 bold;
+      text '1' 489.6 202.7 color 16711680 16 bold;
+      line 489.6 218.7 503.5 199.5 color 16711680 width 2;
     end;
     implementation eq
 parameters
@@ -41,7 +41,7 @@ parameters
 equations
 	output = input / K;
        implementation_end;
-   Attenuate1 528 264
+   Attenuate1 496 264
     description '<Description>
  <Version>4.0</Version>
  <IsMainModel>1</IsMainModel>
@@ -56,10 +56,10 @@ equations
     end;
     icon bg bottom
      figures
-      rectangle 512 248 544 280 color 0 fill 15132390;
-      text 'K' 535.5 270.4 color 16711680 16 bold;
-      text '1' 521.6 258.7 color 16711680 16 bold;
-      line 521.6 274.7 535.5 255.5 color 16711680 width 2;
+      rectangle 480 248 512 280 color 0 fill 15132390;
+      text 'K' 503.5 270.4 color 16711680 16 bold;
+      text '1' 489.6 258.7 color 16711680 16 bold;
+      line 489.6 274.7 503.5 255.5 color 16711680 width 2;
     end;
     implementation eq
 parameters
@@ -67,7 +67,7 @@ parameters
 equations
 	output = input / K;
        implementation_end;
-   Constant 152 152
+   Constant 296 152
     description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
    <LibraryPath>Signal\Sources\Constant.emx</LibraryPath>
   <TimeStamp>2007-10-19 14:48:44</TimeStamp>
@@ -78,18 +78,40 @@ equations
     end;
     icon bg bottom
      figures
-      rectangle 136.1 136 167.9 168 color 0 fill 15132390;
-      line 140.9 147.6 162.9 147.6 color 16711680 width 2;
-      line 138.2 158.7 163.9 158.7 color 0;
-      line 140.5 142.7 140.5 161 color 0;
+      rectangle 280.1 136 311.9 168 color 0 fill 15132390;
+      line 284.9 147.6 306.9 147.6 color 16711680 width 2;
+      line 282.2 158.7 307.9 158.7 color 0;
+      line 284.5 142.7 284.5 161 color 0;
     end;
     implementation eq
 parameters
-	real C = 10;		// output value
+	real C = 1;		// output value
 equations
 	output = C;
      implementation_end;
-   F_pos 752 144
+   Constant1 176 328
+    description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Signal\Sources\Constant.emx</LibraryPath>
+  <TimeStamp>2007-10-19 14:48:44</TimeStamp>
+</Description>';
+    type Constant
+     ports
+      signal out output;
+    end;
+    icon bg bottom
+     figures
+      rectangle 160.1 312 191.9 344 color 0 fill 15132390;
+      line 164.9 323.6 186.9 323.6 color 16711680 width 2;
+      line 162.2 334.7 187.9 334.7 color 0;
+      line 164.5 318.7 164.5 337 color 0;
+    end;
+    implementation eq
+parameters
+	real C = 1.0;		// output value
+equations
+	output = C;
+     implementation_end;
+   F_pos 672 152
     description '<Information><Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues><LibraryPath>Signal\Block Diagram\SignalMonitor.emx</LibraryPath><TimeStamp>2007-9-26 12:14:4</TimeStamp><AllowLibraryUpdate>True</AllowLibraryUpdate></Description></Information>';
     type SignalMonitor
      ports
@@ -97,12 +119,12 @@ equations
     end;
     icon bg bottom
      figures
-      rectangle 736 128 768 160 color 0 fill 15132390;
-      rectangle 741.7 133.8 762.3 154.6 color 16711680 fill 11776947 width 2;
-      rectangle 743.8 136.4 759.9 152 color -1 fill 16777215;
-      line 745.9 138.7 745.9 150 color 0 fill 16777215;
-      line 744 148.4 756.5 148.4 color 0 fill 16777215;
-      line 745.5 148.1 758.4 141.7 color 255 fill 16777215;
+      rectangle 656 136 688 168 color 0 fill 15132390;
+      rectangle 661.7 141.8 682.3 162.6 color 16711680 fill 11776947 width 2;
+      rectangle 663.8 144.4 679.9 160 color -1 fill 16777215;
+      line 665.9 146.7 665.9 158 color 0 fill 16777215;
+      line 664 156.4 676.5 156.4 color 0 fill 16777215;
+      line 665.5 156.1 678.4 149.7 color 255 fill 16777215;
     end;
     implementation eq
 variables
@@ -110,7 +132,7 @@ variables
 equations
 	plot = input;
    implementation_end;
-   K1 464 320
+   K1 432 320
     description '<Information><Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues><LibraryPath>Signal\Block Diagram\Gain.emx</LibraryPath><TimeStamp>2007-9-26 12:15:12</TimeStamp><AllowLibraryUpdate>True</AllowLibraryUpdate><Configuration></Configuration></Description></Information>';
     type Gain
      ports
@@ -119,8 +141,8 @@ equations
     end;
     icon bg bottom
      figures
-      rectangle 448.1 304 479.9 336 color 0 fill 15132390;
-      text 'K' 464 320 color 16711680 16 bold;
+      rectangle 416.1 304 447.9 336 color 0 fill 15132390;
+      text 'K' 432 320 color 16711680 16 bold;
     end;
     implementation eq
 parameters
@@ -128,7 +150,7 @@ parameters
 equations
 	output = K * input;
     implementation_end;
-   K2 464 264
+   K2 432 264
     description '<Information><Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues><LibraryPath>Signal\Block Diagram\Gain.emx</LibraryPath><TimeStamp>2007-9-26 12:15:12</TimeStamp><AllowLibraryUpdate>True</AllowLibraryUpdate><Configuration></Configuration></Description></Information>';
     type Gain
      ports
@@ -137,8 +159,8 @@ equations
     end;
     icon bg bottom
      figures
-      rectangle 448.1 248 479.9 280 color 0 fill 15132390;
-      text 'K' 464 264 color 16711680 16 bold;
+      rectangle 416.1 248 447.9 280 color 0 fill 15132390;
+      text 'K' 432 264 color 16711680 16 bold;
     end;
     implementation eq
 parameters
@@ -146,7 +168,7 @@ parameters
 equations
 	output = K * input;
     implementation_end;
-   K3 464 208
+   K3 432 208
     description '<Information><Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues><LibraryPath>Signal\Block Diagram\Gain.emx</LibraryPath><TimeStamp>2007-9-26 12:15:12</TimeStamp><AllowLibraryUpdate>True</AllowLibraryUpdate><Configuration></Configuration></Description></Information>';
     type Gain
      ports
@@ -155,8 +177,8 @@ equations
     end;
     icon bg bottom
      figures
-      rectangle 448.1 192 479.9 224 color 0 fill 15132390;
-      text 'K' 464 208 color 16711680 16 bold;
+      rectangle 416.1 192 447.9 224 color 0 fill 15132390;
+      text 'K' 432 208 color 16711680 16 bold;
     end;
     implementation eq
 parameters
@@ -164,7 +186,7 @@ parameters
 equations
 	output = K * input;
     implementation_end;
-   PlusMinus 304 152
+   PlusMinus 360 152
     description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
    <LibraryPath>Signal\Block Diagram\PlusMinus.emx</LibraryPath>
   <TimeStamp>2007-9-27 10:15:13</TimeStamp>
@@ -177,7 +199,45 @@ equations
     end;
     icon bg ellipse
      figures
-      ellipse 296 144 312 160 color 0 fill 16777215;
+      ellipse 352 144 368 160 color 0 fill 16777215;
+    end;
+    implementation eq
+equations
+    output = sum (collect (plus)) - sum (collect (minus));
+    implementation_end;
+   PlusMinus1 360 208
+    description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Signal\Block Diagram\PlusMinus.emx</LibraryPath>
+  <TimeStamp>2007-9-27 10:15:13</TimeStamp>
+</Description>';
+    knot PlusMinus
+     ports
+      signal knot duplicatable in plus [1];
+      signal knot duplicatable in minus [1];
+      signal knot out output [1];
+    end;
+    icon bg ellipse
+     figures
+      ellipse 352 200 368 216 color 0 fill 16777215;
+    end;
+    implementation eq
+equations
+    output = sum (collect (plus)) - sum (collect (minus));
+    implementation_end;
+   PlusMinus2 360 264
+    description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
+   <LibraryPath>Signal\Block Diagram\PlusMinus.emx</LibraryPath>
+  <TimeStamp>2007-9-27 10:15:13</TimeStamp>
+</Description>';
+    knot PlusMinus
+     ports
+      signal knot duplicatable in plus [1];
+      signal knot duplicatable in minus [1];
+      signal knot out output [1];
+    end;
+    icon bg ellipse
+     figures
+      ellipse 352 256 368 272 color 0 fill 16777215;
     end;
     implementation eq
 equations
@@ -1781,7 +1841,7 @@ equations
       Voltage_Limit\output -> PlusMinus\plus;
      end;
     implementation_end;
-   Splitter 688 152
+   Splitter 624 152
     description '<Description><Version>4.0</Version>
    <LibraryPath>Signal\Block Diagram\Splitter.emx</LibraryPath>
   <TimeStamp>2008-01-17 11:28:29</TimeStamp>
@@ -1795,10 +1855,10 @@ equations
     end;
     icon bg ellipse
      figures
-      ellipse 684.8 148.8 691.2 155.2 color -1 fill 0;
-      ellipse 683.7 147.7 692.3 156.3 color -1;
+      ellipse 620.8 148.8 627.2 155.2 color -1 fill 0;
+      ellipse 619.7 147.7 628.3 156.3 color -1;
      terminals
-      input 688 152 fixed;
+      input 624 152 fixed;
     end;
     implementation eq
 equations
@@ -1827,30 +1887,7 @@ implementation_end;
 equations
     collect (output) = input;
 implementation_end;
-   Splitter5 192 152
-    description '<Description><Version>4.0</Version>
-   <LibraryPath>Signal\Block Diagram\Splitter.emx</LibraryPath>
-  <TimeStamp>2008-01-17 11:28:29</TimeStamp>
-<IsMainModel>1</IsMainModel>
- <KeepParameterValues>False</KeepParameterValues>
-</Description>';
-    knot Splitter
-     ports
-      signal knot duplicatable out output [1];
-      signal knot in input [1];
-    end;
-    icon bg ellipse
-     figures
-      ellipse 188.8 148.8 195.2 155.2 color -1 fill 0;
-      ellipse 187.7 147.7 196.3 156.3 color -1;
-     terminals
-      input 192 152 fixed;
-    end;
-    implementation eq
-equations
-    collect (output) = input;
-implementation_end;
-   Step 280 376
+   Step 288 376
     description '<Information><Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues><LibraryPath>Signal\Sources\SignalGenerator-Step.emx</LibraryPath><TimeStamp>2007-9-27 16:2:44</TimeStamp><AllowLibraryUpdate>True</AllowLibraryUpdate></Description></Information>';
     type 'SignalGenerator-Step'
      ports
@@ -1859,42 +1896,11 @@ implementation_end;
     icon bg bottom
      figures
       group
-       rectangle 264 360 296 392 color 0 fill 15132390;
-       line 273.6 372.8 290.6 372.8 color 16711680 width 2;
-       line 266.9 384 293.1 384 color 0;
-       line 269.1 384.1 273.7 384.1 273.7 372.7 color 16711680 width 2;
-       line 269.1 368 269.1 386.2 color 0;
-      end;
-    end;
-    implementation eq
-parameters
-	real amplitude = 1;
-	real start_time = 0 {s};
-variables
-	boolean hidden change;
-equations
-	"calculate at least at the start time"
-	change = timeevent (start_time);
-	
-	"calculate the step signal"
-	output = amplitude * step (start_time);     implementation_end;
-   Step1 120 208
-    description '<Description><Version>4.0</Version><IsMainModel>1</IsMainModel><KeepParameterValues>False</KeepParameterValues>
-   <LibraryPath>Signal\Sources\SignalGenerator-Step.emx</LibraryPath>
-  <TimeStamp>2007-9-27 16:2:44</TimeStamp>
-</Description>';
-    type 'SignalGenerator-Step'
-     ports
-      signal out output;
-    end;
-    icon bg bottom
-     figures
-      group
-       rectangle 104 192 136 224 color 0 fill 15132390;
-       line 113.6 204.8 130.6 204.8 color 16711680 width 2;
-       line 106.9 216 133.1 216 color 0;
-       line 109.1 216.1 113.7 216.1 113.7 204.7 color 16711680 width 2;
-       line 109.1 200 109.1 218.2 color 0;
+       rectangle 272 360 304 392 color 0 fill 15132390;
+       line 281.6 372.8 298.6 372.8 color 16711680 width 2;
+       line 274.9 384 301.1 384 color 0;
+       line 277.1 384.1 281.7 384.1 281.7 372.7 color 16711680 width 2;
+       line 277.1 368 277.1 386.2 color 0;
       end;
     end;
     implementation eq
@@ -1941,21 +1947,22 @@ equations
   connections
    Attenuate\output -> K3\input;
    Attenuate1\output -> K2\input;
-   Constant\output -> Splitter5\input;
-   K1\output -> PlusMinus\minus;
-   K2\output -> PlusMinus\minus;
-   K3\output -> PlusMinus\minus;
+   Constant\output -> PlusMinus\plus;
+   K1\output -> PlusMinus2\plus 360 320;
+   K2\output -> PlusMinus2\plus;
+   K3\output -> PlusMinus1\plus;
    PlusMinus\output -> RobotArm2\motorVoltage;
+   PlusMinus1\output -> PlusMinus\minus;
+   PlusMinus2\output -> PlusMinus1\plus;
    PlusMinus3\output -> RobotArm\motorVoltage;
    RobotArm\position -> Splitter1\input;
    RobotArm2\current -> K1\input 560 320;
    RobotArm2\position -> Splitter\input;
    RobotArm2\speed -> Attenuate1\input;
-   Splitter\output -> Attenuate\input 688 208;
+   Splitter\output -> Attenuate\input 624 208;
    Splitter\output -> F_pos\input;
-   Splitter1\output -> PlusMinus3\minus 544 416 352 416;
+   Splitter1\output -> PlusMinus3\minus 544 432 352 432;
    Splitter1\output -> Position\input;
-   Splitter5\output -> PlusMinus\plus;
    Step\output -> PlusMinus3\plus;
   end;
  implementation_end;
@@ -1972,32 +1979,14 @@ equations
 <ExpData>
   <VersionNumber>4.8</VersionNumber>
   <ModelProperties>
-    <ModelProperty section="tools\linearization" entry="inputName" value="Step\output"/>
-    <ModelProperty section="tools\linearization" entry="outputName" value="Position\plot"/>
+    <ModelProperty section="tools\linearization" entry="useClosedLoop" value="1"/>
+    <ModelProperty section="tools\linearization" entry="inputName" value="Constant\output"/>
+    <ModelProperty section="tools\linearization" entry="outputName" value="F_pos\input"/>
   </ModelProperties>
   <Variables>
    <Parameters>
    </Parameters>
    <Initials>
-    <Variable>
-     <Name>RobotArm2\Current_Limit\output_initial</Name>
-     <Value>0</Value>
-    </Variable>
-    <Variable>
-     <Name>RobotArm2\InertiaAxis\p.omega_initial</Name>
-     <Unit>rad/s</Unit>
-     <Value>0</Value>
-    </Variable>
-    <Variable>
-     <Name>RobotArm2\InertiaAxis\phi_initial</Name>
-     <Unit>rad</Unit>
-     <Value>0</Value>
-    </Variable>
-    <Variable>
-     <Name>RobotArm2\PositionSensor\phi_initial</Name>
-     <Unit>rad</Unit>
-     <Value>0</Value>
-    </Variable>
     <Variable>
      <Name>RobotArm\Current_Limit\output_initial</Name>
      <Value>0</Value>
@@ -2014,6 +2003,25 @@ equations
     </Variable>
     <Variable>
      <Name>RobotArm\PositionSensor\phi_initial</Name>
+     <Unit>rad</Unit>
+     <Value>0</Value>
+    </Variable>
+    <Variable>
+     <Name>RobotArm2\Current_Limit\output_initial</Name>
+     <Value>0</Value>
+    </Variable>
+    <Variable>
+     <Name>RobotArm2\InertiaAxis\p.omega_initial</Name>
+     <Unit>rad/s</Unit>
+     <Value>0</Value>
+    </Variable>
+    <Variable>
+     <Name>RobotArm2\InertiaAxis\phi_initial</Name>
+     <Unit>rad</Unit>
+     <Value>0</Value>
+    </Variable>
+    <Variable>
+     <Name>RobotArm2\PositionSensor\phi_initial</Name>
      <Unit>rad</Unit>
      <Value>0</Value>
     </Variable>
@@ -2104,11 +2112,11 @@ equations
      </XAxes>
      <YAxes>
       <Axis>
-       <Minimum>-4.0</Minimum>
-       <Maximum>16.0</Maximum>
+       <Minimum>-0.004</Minimum>
+       <Maximum>0.016</Maximum>
        <Linear>true</Linear>
        <Scaling>1</Scaling>
-       <Label>input</Label>
+       <Label>FSB Position</Label>
       </Axis>
      </YAxes>
      <ZAxes>
@@ -2155,7 +2163,7 @@ equations
    </PlotPanels>
    <WindowRectangles virtualDesktopWidth="1680" virtualDesktopHeight="1050">
      <WindowRectangle monitor="0" left="0" top="0" right="1680" bottom="1050" plotpanelid="1">
-0 0 1 0.98
+-0.0047619 -0.00761905 1.00476 0.979048
      </WindowRectangle>
    </WindowRectangles>
   </PlotSpecs>
@@ -2293,15 +2301,15 @@ equations
    <WriteFilename></WriteFilename>
    <DoWrite>false</DoWrite>
    <ExportVariables>
-     <ExportVariable>
-       <VariableName>time</VariableName>
-     </ExportVariable>
    </ExportVariables>
    <ImportVariables>
    </ImportVariables>
   </ExportData>
   <BreakPoints>
   </BreakPoints>
+  <AnimationPlayback>
+   <PlaybackSpeed>1.0</PlaybackSpeed>
+  </AnimationPlayback>
 </ExpData>
   </Experiment>
 </Experiments>

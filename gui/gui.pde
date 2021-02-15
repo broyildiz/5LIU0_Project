@@ -1,9 +1,9 @@
-import controlP5.*; // For input forms
-import grafica.*;
+import controlP5.*;  // For input forms
+import grafica.*;    // For graphs
 
-PrintWriter xOutput;
-PrintWriter yOutput;
-PrintWriter settingsFile;
+PrintWriter xOutput;      // Declare txt file named xOutput
+PrintWriter yOutput;      // Declare txt file named yOutput
+PrintWriter settingsFile; // Declare txt file named settingsFile
 
 ControlP5 cp5;
 String textValue = "";
@@ -11,8 +11,8 @@ String textValue = "";
 PFont f;
 int fontSize = 18; 
 
-int h = 600;
-int l = h*2;
+int h = 600;  // Height is 600 pixels
+int l = h*2;  // Length is half the height
 
 public class Canvas
 {
@@ -26,12 +26,12 @@ public class Sinusoid
  public float B; // 2*pi/B = Period
  public float C; // Phase offset
  public float D; // Vertical offset
- public float Fsample;
- public float period;
- public float sin_freq;
- public int   Nsamples;
+ public float Fsample;  // Sample frequency
+ public float period;   // Period of the signal
+ public float sin_freq;  // Frequency of the signal
+ public int   Nsamples;  // Number of samples a.k.a. bin size
 }
-
+// Divide the screen up into 4 quarters
 Canvas q1 = new Canvas();
 Canvas q2 = new Canvas();
 Canvas q3 = new Canvas();
@@ -57,9 +57,11 @@ int update = 0;
 
 void settings()
 {
-  size(l,h);    
+  size(l,h);  // Create the screen   
 }
 
+// This function where which quarter is drawn on the canvas
+// It also sets default values for the sine struct
 void set_offsets()
 {
   q1.x_offset = 0;
@@ -99,17 +101,12 @@ void quarter_1()
         len = (int)textWidth(forms[i] + (int)textWidth(extra));
       }    
     }
-    //println(len);
-    //line(len,0,len,h);
     
     int formSize = l/8;
     
     int elements = 1; 
     text(Q1_label,0+q1.x_offset, (fontSize * (elements++))+q1.y_offset);
-    //text(Fsample_s,0+q1.x_offset, (fontSize * (elements++))+q1.y_offset);
-    //int len = Fsample_s.length();
-    //text(str(len),0+q1.x_offset, (fontSize * (elements++))+q1.y_offset);
-    elements++;
+    elements++; // By incrementing elements we draw the next element below this element.
     cp5 = new ControlP5(this);
   
     text( equation, 0+q1.x_offset, (fontSize * (elements++))+q1.y_offset);
@@ -126,7 +123,7 @@ void quarter_1()
      
     text( "= "+str(s.A), 0 + formSize*2 + q1.x_offset, (fontSize * (elements+1))+q1.y_offset);
   
-    elements += 2;
+    elements += 2; // Incrment twice to account for input field size
   
     //text(formB + " = ", 0+q1.x_offset, (fontSize * (elements))+q1.y_offset);
     //cp5.addTextfield(formB)
@@ -196,7 +193,7 @@ void quarter_1()
     text( "= "+str(s.Nsamples) + " [Hz]", 0 + formSize*2 + q1.x_offset, (fontSize * (elements+1))+q1.y_offset);
      elements += 2;    
      
-     
+    // Make it visually clear if there is aliasing or not
     String aliasing = "NO";
     if(s.sin_freq > (s.Fsample/2)) 
     {
@@ -222,26 +219,14 @@ void quarter_1()
     s.period = 1 / s.sin_freq;
     text("Period" + extra + str(s.period), 0 + q1.x_offset, (fontSize * (elements++))+q1.y_offset);
     
-    //cp5.addButton("Button")
-    //  .setValue(1)
-    //  .setPosition(0, (fontSize * (elements++))+q1.y_offset)
-    //  .setSize(200,19);
 }
 
-//void Button(float theValue) {
-//  println("updating");
-//  RunFile(1);
-//  quarter_4();
-//}
-
+/*
+  Field for drawing the desired sine wave
+*/
 void quarter_2()
 {
-  int nPoints = s.Nsamples;
-  
-  float[] x_values = new float[s.Nsamples];
-  float[] y_values = new float[s.Nsamples];
-  int cnt = 0;
-  
+  int nPoints = s.Nsamples;  
   float Fs = s.Fsample;
   float F = s.sin_freq;
   float period = 1/F;
@@ -249,13 +234,14 @@ void quarter_2()
   GPointsArray points1a = new GPointsArray(nPoints);
   GPointsArray points1b = new GPointsArray(nPoints);
   
+  // Generate the points for 1 period of the sine wave
   for(float x = 0.0; x < period; x += 1/Fs)
   {
     points1a.add(x, s.A * sin(TWO_PI*F*(x + s.C)) + s.D);
-    //xOutput.println(x);
-    //yOutput.println(s.A * sin(TWO_PI*F*(x + s.C)) + s.D);
   } 
   
+  // Generate the same sine wave, but now wth a lot more points
+  // The goal: emulate a smooth line instead of a bunch of dots
   for(float x = 0.0; x < period; x += ((float)1/100000))
   {
     points1b.add(x, s.A * sin(TWO_PI*F*(x + s.C)) + s.D);
@@ -283,13 +269,16 @@ void quarter_2()
   // Draw it!
   plot.defaultDraw();
   
+  // Store the x and y values for later use in Excel 
   for(int x = 0; x < 512; x++)
   {
     xOutput.println(x);
     yOutput.println(( s.A * sin(TWO_PI*F*((x/s.Fsample) + s.C)) ) + s.D );
   } 
   
-   writeSettingsFile();
+  // Write the attributes of the desired sine wave in a text file
+  // This will later be used by the DFT algorithm as input
+  writeSettingsFile();
 
 }
 
@@ -302,10 +291,13 @@ void writeSettingsFile()
   settingsFile.print(int(s.D));
 }  
 
+// Remap one number range to another
+// https://stackoverflow.com/questions/5731863/mapping-a-numeric-range-onto-another
+// This function homologates the x-axis of the FFT plot to the sample frequency
 float remap(int i)
 {
   float input_start = 0.0;
-  float input_end = 512;
+  float input_end = 512; // The DFT algorithm uses 512 bins, not dynamic
   float output_start = 0.0;
   float output_end = s.Fsample;
   float slope = 0.0;
@@ -318,18 +310,17 @@ float remap(int i)
   return output;
 }
 
-
+/*
+  This function draws the FFT plot
+*/
 void quarter_3()
 {
-  RunFile(0);
-  //launch("DFT_sin_gen.exe");
-  //exec(sketchPath("DFT_sin_gen.exe"));
-  String[] lines = loadStrings("dft_out.txt");
-  //println("there are " + lines.length + " lines");
+  RunFile(0); // Run the DFT algorithm
+  String[] lines = loadStrings("dft_out.txt"); // Load the output of the DFT algorithm
   String line;
   
-  float[] ReX = new float [258];
-  float[] ImX = new float [258]; 
+  float[] ReX = new float [258]; // Stores the real values
+  float[] ImX = new float [258]; // Stores the imaginary values  
   
   GPointsArray abs = new GPointsArray(256);
  
@@ -339,7 +330,7 @@ void quarter_3()
     String[] list = split(line, '\t');
     ReX[i] = float(list[0]);
     ImX[i] = float(list[1]);
-    abs.add(remap(i), sqrt( ReX[i]*ReX[i] + ImX[i]*ImX[i] ));
+    abs.add(remap(i), sqrt( ReX[i]*ReX[i] + ImX[i]*ImX[i] )); // Remap the x value and calculate the absolute value
   }
   
   GPlot plot = new GPlot(this);
@@ -360,15 +351,14 @@ void quarter_3()
   
   // Draw it!
   plot.defaultDraw();  
-  println("3 present");
 }
 
+/*
+  This function plots the control system output
+*/
 void quarter_4()
 {
-  //launch("DFT_sin_gen.exe");
-  //exec(sketchPath("DFT_sin_gen.exe"));
-  String[] lines = loadStrings("ctrl_out.txt");
-  //println("there are " + lines.length + " lines");
+  String[] lines = loadStrings("ctrl_out.txt"); // Load the output of the control system program
   String line;
   
   float[] t = new float [lines.length];
@@ -404,10 +394,10 @@ void quarter_4()
   plot.defaultDraw();  
 
 }
-
+// Runs once on startup
 void setup()
 {
-  xOutput = createWriter("xdata.txt");
+  xOutput = createWriter("xdata.txt"); // Create txt file
   yOutput = createWriter("ydata.txt");
   settingsFile = createWriter("settings.txt");
   
@@ -422,7 +412,6 @@ void setup()
   set_offsets();
   quarter_1();
   quarter_2();
-  
   
   RunFile(0);
   quarter_3();
@@ -444,7 +433,6 @@ void RunFile(int i)
   {
     PrintWriter output=null;
     output = createWriter("myfile.bat");
-    //output.println("cd C:\\Users\\Ömer\\Desktop\\5LIU0\\GUI\\old_new\\gui\\");
     output.println("cd " + sketchPath(""));
     output.println("DFT_sin_gen.exe");
     output.flush();
@@ -473,6 +461,7 @@ void RunFile(int i)
   
 }
 
+// Loops continuously
 void draw()
 {
   if(update == 1)
@@ -505,7 +494,6 @@ void draw()
         
       update = 0;
   }
-      
 }
 
 void controlEvent(ControlEvent theEvent) {
@@ -528,40 +516,33 @@ void controlEvent(ControlEvent theEvent) {
       { 
         s.B = float(theEvent.getStringValue());
         update = 1;
-        //println(s.A);
       } 
       if(theEvent.getName() == formC) 
       { 
         s.C = float(theEvent.getStringValue());
         update = 1;
-        //println(s.A);
       } 
       if(theEvent.getName() == formD) 
       { 
         s.D = float(theEvent.getStringValue());
         update = 1;
-        //println(s.A);
       } 
       if(theEvent.getName() == formFsample) 
       { 
         s.Fsample = float(theEvent.getStringValue());
         update = 1;
-        //println(s.A);
       } 
       
       if(theEvent.getName() == formFc) 
       { 
         s.sin_freq = float(theEvent.getStringValue());
         update = 1;
-        //println(s.A);
       } 
       
       if(theEvent.getName() == formN) 
       { 
         s.Nsamples = int(theEvent.getStringValue());
         update = 1;
-        //println(s.A);
       } 
   }
-  //update = 1;
 }
