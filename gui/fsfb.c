@@ -17,11 +17,11 @@ int main()
 	const float dt = 0.001;
 	
 	// variabelen
-	float t;               		// tijd
-	float u;               		// input
-	float x1, x2, x3;       // states
-	float y;               		// output 
-	float dx1,dx2, dx3;    // verandering van de state per tijdstap
+	float t;               // time
+	float u;               // input
+	float x1, x2, x3;      // states
+	float y;               // output 
+	float dx1,dx2, dx3;    // changes to the states per time step
 	
 	float error;
 	
